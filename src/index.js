@@ -1,7 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import { ThemeProvider } from '@material-ui/core/styles';
 
-import Form from './js/components/Form';
+import App from './js/App';
+import theme from './js/styles';
 
-const wrapper = document.getElementById('root');
-wrapper ? ReactDOM.render(<Form />, wrapper) : false;
+ReactDOM.render(
+    <ThemeProvider theme={theme}>
+        <App />
+    </ThemeProvider>,
+    document.getElementById('root')
+);
