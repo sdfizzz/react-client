@@ -1,0 +1,27 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "sourceType": "module",
+        "allowImportExportEverywhere": true
+    },
+    "plugins": ["prettier", "html"],
+    "settings": {
+        "html/html-extensions": [".html"]
+    },
+    "rules": {
+        "max-len": ["warn", {
+            "code": 120
+        }],
+        "prettier/prettier": "warn",
+        "no-console": "warn"
+    }
+}
