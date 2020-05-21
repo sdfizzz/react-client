@@ -7,7 +7,7 @@ export const urls = {
     main: baseUri('/'),
     login: baseUri('/login'),
     registration: baseUri('/registration'),
-    content: '/content'
+    content: baseUri('/content')
 };
 
 export const createLink = url => React.forwardRef((props, ref) => <Link to={url} {...props} ref={ref} />);

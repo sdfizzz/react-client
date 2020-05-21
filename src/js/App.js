@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 
 import Header from './components/header/Header.js';
@@ -7,17 +7,19 @@ import { urls } from './constants/urls.js';
 import LoginForm from './components/LoginForm.js';
 import RegistrationForm from './components/RegistrationForm.js';
 import Footer from './components/Footer';
+import GreetingPanel from './components/GreetingPanel';
 
 const App = () => (
     <Router>
         <Container>
-            <Header/>
+            <Header />
             <Switch>
-                <Route path={urls.main.pathname} exact component={() => <div/>}/>
-                <Route path="/login" component={LoginForm}/>
-                <Route path={urls.registration.pathname} component={RegistrationForm}/>
+                <Route path={urls.main.pathname} exact component={() => <div />} />
+                <Route path="/login" component={LoginForm} />
+                <Route path={urls.registration.pathname} component={RegistrationForm} />
+                <Route path={urls.content.pathname} component={GreetingPanel} />
             </Switch>
-            <Footer/>
+            <Footer />
         </Container>
     </Router>
 );
