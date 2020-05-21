@@ -31,6 +31,9 @@ const Header = props => {
                     Spring-bundle
                 </Typography>
 
+                <Button color="inherit" href='/content'>
+                    Content
+                </Button>
                 <Button color="inherit" href={urls.login.href}>
                     Sign in
                 </Button>

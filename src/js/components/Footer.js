@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles, styled } from '@material-ui/core/styles';
-import { Container } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { withTheme } from '@material-ui/styles';
 
@@ -16,12 +15,12 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const Footer = props => (
-    <Container className={useStyles().root}>
+const Footer = () => (
+    <div className={useStyles().root}>
         <Typography variant="body1">
             <p>Made for inspiration</p>
         </Typography>
-    </Container>
+    </div>
 );
 
 export default withTheme(Footer);
