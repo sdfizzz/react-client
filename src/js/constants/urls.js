@@ -4,5 +4,5 @@ export const urls = {
     main: '/',
     login: '/login',
     registration: '/registration',
-    content: '/content'
+    greetings: '/greetings'
 };

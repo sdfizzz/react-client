@@ -32,8 +32,8 @@ const Header = props => {
                     Spring-bundle
                 </Typography>
 
-                <Button color="secondary" component={Link} to={urls.content}>
-                    Content
+                <Button color="secondary" component={Link} to={urls.greetings}>
+                    Greetings
                 </Button>
                 <Button color="secondary" component={Link} to={urls.login}>
                     Sign in

@@ -17,7 +17,7 @@ const App = () => (
                 <Route path={urls.main} exact component={() => <div />} />
                 <Route path={urls.login} component={LoginForm} />
                 <Route path={urls.registration} component={RegistrationForm} />
-                <Route path={urls.content} component={GreetingPanel} />
+                <Route path={urls.greetings} component={GreetingPanel} />
             </Switch>
             <Footer />
         </Container>
