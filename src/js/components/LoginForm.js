@@ -66,8 +66,14 @@ function LoginForm(props) {
     return (
         <Typography component={'span'} variant={'body2'}>
             <StyledContainer>
-                <ColumnTextField helperText="Enter your Username" placeholder="Username" onChange={handleChange} />
                 <ColumnTextField
+                    id="name"
+                    helperText="Enter your Username"
+                    placeholder="Username"
+                    onChange={handleChange}
+                />
+                <ColumnTextField
+                    id="password"
                     type="password"
                     helperText="Enter your Password"
                     placeholder="Password"

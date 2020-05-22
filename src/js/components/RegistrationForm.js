@@ -41,10 +41,12 @@ function RegistrationForm(props) {
             [id]: value
         }));
     };
+
     const sendDetailsToServer = () => {
         if (state.name.length && state.password.length && state.password) {
             updateMessage(null);
             const payload = {
+                email: state.email,
                 name: state.name,
                 password: state.password
             };
@@ -81,15 +83,27 @@ function RegistrationForm(props) {
     return (
         <Typography component={'span'} variant={'body2'}>
             <StyledContainer>
-                <ColumnTextField helperText="Enter your e-mail" placeholder="E-mail" onChange={handleChange} />
-                <ColumnTextField helperText="Enter your username" placeholder="Username" onChange={handleChange} />
                 <ColumnTextField
+                    id="email"
+                    helperText="Enter your e-mail"
+                    placeholder="E-mail"
+                    onChange={handleChange}
+                />
+                <ColumnTextField
+                    id="name"
+                    helperText="Enter your username"
+                    placeholder="Username"
+                    onChange={handleChange}
+                />
+                <ColumnTextField
+                    id="password"
                     type="password"
                     helperText="Enter your password"
                     placeholder="Password"
                     onChange={handleChange}
                 />
                 <ColumnTextField
+                    id="confirmPassword"
                     type="password"
                     helperText="Confirm your password"
                     placeholder="Password confirmation"
@@ -100,7 +114,6 @@ function RegistrationForm(props) {
 
                 <BottomContainer>
                     <div style={{ display: state.message ? 'block' : 'none' }}>{state.message}</div>
-
                     <div>
                         <span>Already have an account?</span>
                         <Button color="inherit" href={urls.registration.href}>
