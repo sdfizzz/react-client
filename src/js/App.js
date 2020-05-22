@@ -14,10 +14,10 @@ const App = () => (
         <Container>
             <Header />
             <Switch>
-                <Route path={urls.main.pathname} exact component={() => <div />} />
-                <Route path="/login" component={LoginForm} />
-                <Route path={urls.registration.pathname} component={RegistrationForm} />
-                <Route path={urls.content.pathname} component={GreetingPanel} />
+                <Route path={urls.main} exact component={() => <div />} />
+                <Route path={urls.login} component={LoginForm} />
+                <Route path={urls.registration} component={RegistrationForm} />
+                <Route path={urls.content} component={GreetingPanel} />
             </Switch>
             <Footer />
         </Container>

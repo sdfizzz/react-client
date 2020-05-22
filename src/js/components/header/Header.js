@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -6,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 import HeaderMenu from './HeaderMenu';
-import { urls, createLink } from '../../constants/urls';
+import { urls } from '../../constants/urls';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -31,13 +32,13 @@ const Header = props => {
                     Spring-bundle
                 </Typography>
 
-                <Button color="inherit" href="/content">
+                <Button color="secondary" component={Link} to={urls.content}>
                     Content
                 </Button>
-                <Button color="inherit" href={urls.login.href}>
+                <Button color="secondary" component={Link} to={urls.login}>
                     Sign in
                 </Button>
-                <Button color="inherit" component={createLink(urls.registration.href)}>
+                <Button color="secondary" component={Link} to={urls.registration}>
                     Registration
                 </Button>
             </Toolbar>

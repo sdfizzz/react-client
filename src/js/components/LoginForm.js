@@ -6,8 +6,8 @@ import { withRouter } from 'react-router-dom';
 import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import ColumnTextField from './common/ColumnTextField';
 
 const StyledContainer = styled(Container)({
     maxWidth: '800px',
@@ -22,8 +22,14 @@ function LoginForm(props) {
     const [state, setState] = useState({
         name: '',
         password: '',
-        successMessage: null
+        message: null
     });
+
+    const updateMessage = message =>
+        setState(state => ({
+            ...state,
+            message: message
+        }));
 
     const handleChange = e => {
         const { id, value } = e.target;
@@ -43,46 +49,35 @@ function LoginForm(props) {
             .post(apiUrls.login.href, payload)
             .then(function(response) {
                 if (response.data.code === 200) {
-                    setState(prevState => ({
-                        ...prevState,
-                        successMessage: 'Login successful. Redirecting to home page..'
-                    }));
+                    updateMessage('Login successful. Redirecting to home page..');
                     redirectToHome();
-                    props.showError(null);
+                    updateMessage(null);
                 } else if (response.data.code === 204) {
-                    props.showError('Username and password do not match');
+                    updateMessage('Username and password do not match');
                 } else {
-                    props.showError('Username does not exists');
+                    updateMessage('Username does not exists');
                 }
             })
             .catch(function(error) {
-                // console.log(error);
+                updateMessage(error);
             });
-    };
-
-    const redirectToHome = () => {
-        props.updateTitle('Home');
-        props.history.push(urls.main);
     };
 
     return (
         <Typography component={'span'} variant={'body2'}>
             <StyledContainer>
-                <TextField helperText="Enter your Username" placeholder="Username" onChange={handleChange} />
-                <br />
-                <TextField
+                <ColumnTextField helperText="Enter your Username" placeholder="Username" onChange={handleChange} />
+                <ColumnTextField
                     type="password"
                     helperText="Enter your Password"
                     placeholder="Password"
                     onChange={handleChange}
                 />
-                <br />
                 <Button onClick={handleSubmitClick}>Submit</Button>
-                <br />
                 <small>We'll never share your name with anyone else.</small>
 
-                <div style={{ display: state.successMessage ? 'block' : 'none' }} role="alert">
-                    {state.successMessage}
+                <div style={{ display: state.message ? 'block' : 'none' }} role="alert">
+                    {state.message}
                 </div>
                 <div>
                     <span>Dont have an account? </span>

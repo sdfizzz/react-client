@@ -1,8 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { styled } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+
 import { apiUrls } from '../constants/apiConstants.js';
 import { urls } from '../constants/urls.js';
-import { withRouter } from 'react-router-dom';
+import ColumnTextField from './common/ColumnTextField';
+import BottomContainer from './common/BottomContainer';
+
+const StyledContainer = styled(Container)({
+    maxWidth: '800px',
+    display: 'flex',
+    flexFlow: 'column noWrap',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '20px'
+});
 
 function RegistrationForm(props) {
     const [state, setState] = useState({
@@ -10,8 +25,15 @@ function RegistrationForm(props) {
         name: '',
         password: '',
         confirmPassword: '',
-        successMessage: null
+        message: null
     });
+
+    const updateMessage = message =>
+        setState(state => ({
+            ...state,
+            message: message
+        }));
+
     const handleChange = e => {
         const { id, value } = e.target;
         setState(prevState => ({
@@ -20,8 +42,8 @@ function RegistrationForm(props) {
         }));
     };
     const sendDetailsToServer = () => {
-        if (state.name.length && state.password.length) {
-            props.showError(null);
+        if (state.name.length && state.password.length && state.password) {
+            updateMessage(null);
             const payload = {
                 name: state.name,
                 password: state.password
@@ -34,77 +56,61 @@ function RegistrationForm(props) {
                             ...prevState,
                             successMessage: 'Registration successful. Redirecting to home page..'
                         }));
-                        redirectToHome();
-                        props.showError(null);
+                        updateMessage(null);
                     } else {
-                        props.showError('Some error ocurred');
+                        updateMessage('Some error ocurred');
                     }
                 })
                 .catch(function(error) {
-                    console.log(error);
+                    // console.log(error);
                 });
         } else {
-            props.showError('Please enter valid username and password');
+            updateMessage('Please enter valid username and password');
         }
     };
-    const redirectToHome = () => {
-        props.updateTitle('Home');
-        props.history.push('/home');
-    };
-    const redirectToLogin = () => {
-        props.updateTitle('Login');
-        props.history.push('/login');
-    };
+
     const handleSubmitClick = e => {
         e.preventDefault();
         if (state.password === state.confirmPassword) {
             sendDetailsToServer();
         } else {
-            props.showError('Passwords do not match');
+            updateMessage('Passwords mismatch.');
         }
     };
+
     return (
-        <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
-            <form>
-                <div className="form-group text-left">
-                    <label>Name</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Your name"
-                        value={state.name}
-                        onChange={handleChange}
-                    />
-                    <small>We'll never share your name with anyone else.</small>
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input type="password" placeholder="Password" value={state.password} onChange={handleChange} />
-                </div>
-                <div>
-                    <label>Confirm Password</label>
-                    <input
-                        type="password"
-                        placeholder="Confirm Password"
-                        value={state.confirmPassword}
-                        onChange={handleChange}
-                    />
-                </div>
-                <button type="submit" onClick={handleSubmitClick}>
-                    Register
-                </button>
-            </form>
-            <div style={{ display: state.successMessage ? 'block' : 'none' }} role="alert">
-                {state.successMessage}
-            </div>
-            <div className="mt-2">
-                <span>Already have an account? </span>
-                <Button color="inherit" component={createLink(urls.login)}>
-                    Sign in
-                </Button>
-            </div>
-        </div>
+        <Typography component={'span'} variant={'body2'}>
+            <StyledContainer>
+                <ColumnTextField helperText="Enter your e-mail" placeholder="E-mail" onChange={handleChange} />
+                <ColumnTextField helperText="Enter your username" placeholder="Username" onChange={handleChange} />
+                <ColumnTextField
+                    type="password"
+                    helperText="Enter your password"
+                    placeholder="Password"
+                    onChange={handleChange}
+                />
+                <ColumnTextField
+                    type="password"
+                    helperText="Confirm your password"
+                    placeholder="Password confirmation"
+                    onChange={handleChange}
+                />
+                <small>We'll never share your name with anyone else.</small>
+                <Button onClick={handleSubmitClick}>Submit</Button>
+
+                <BottomContainer>
+                    <div style={{ display: state.message ? 'block' : 'none' }}>{state.message}</div>
+
+                    <div>
+                        <span>Already have an account?</span>
+                        <Button color="inherit" href={urls.registration.href}>
+                            Sing in
+                        </Button>
+                    </div>
+                </BottomContainer>
+            </StyledContainer>
+        </Typography>
     );
 }
 
-export default withRouter(RegistrationForm);
+export default RegistrationForm;
