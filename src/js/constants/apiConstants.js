@@ -4,5 +4,9 @@ export const apiUrls = {
     login: apiBaseUrl('./login'),
     logout: apiBaseUrl('./login?logout'),
     registration: apiBaseUrl('./registration'),
-    greetings: { list: apiBaseUrl('./greetings/list/'), add: apiBaseUrl('./greetings/add/') }
+    greetings: {
+        list: apiBaseUrl('./greetings/list/'),
+        add: apiBaseUrl('./greetings/add/'),
+        delete: apiBaseUrl('./greetings/delete/')
+    }
 };

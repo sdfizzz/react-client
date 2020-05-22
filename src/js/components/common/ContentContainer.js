@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography';
 
 const StyledContainer = styled(Container)(props => {
     return {
-        maxWidth: '800px',
         display: 'flex',
         flexFlow: props.row ? 'row noWrap' : 'column noWrap',
         alignItems: 'center',

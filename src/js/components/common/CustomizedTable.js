@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 const StyledTableCell = withStyles(theme => ({
     head: {
@@ -34,7 +35,7 @@ const useStyles = makeStyles({
 
 const CustomizedTable = props => {
     const classes = useStyles();
-    const { headers, data, keys } = props;
+    const { headers, data, keys, handleDelete } = props;
 
     return (
         <TableContainer component={Paper}>
@@ -61,6 +62,13 @@ const CustomizedTable = props => {
                                         {row[k]}
                                     </StyledTableCell>
                                 )
+                            )}
+                            {handleDelete ? (
+                                <StyledTableCell key={row.id + 'delete'} align="right">
+                                    <Button onClick={() => handleDelete(row.id)}>Delete</Button>
+                                </StyledTableCell>
+                            ) : (
+                                <div />
                             )}
                         </StyledTableRow>
                     ))}

@@ -5,7 +5,7 @@ import CustomizedTable from './common/CustomizedTable';
 import ContentContainer from './common/ContentContainer';
 import NewGreetingPanel from './NewGreetingPanel';
 
-const headers = ['id', 'template', 'user'];
+const headers = ['id', 'template', 'user', 'delete'];
 const keys = ['id', 'message', 'fromUser'];
 
 function GreetingPanel(props) {
@@ -17,11 +17,18 @@ function GreetingPanel(props) {
 
     useEffect(loadData, []);
 
+    const handleDelete = id => {
+        const payload = {
+            id: id
+        };
+        axios.post(apiUrls.greetings.delete.href, payload).then(loadData);
+    };
+
     return (
         <ContentContainer>
             <h2>Greetings</h2>
             <NewGreetingPanel onListChanged={loadData} />
-            <CustomizedTable headers={headers} data={greetings} keys={keys} />
+            <CustomizedTable headers={headers} data={greetings} keys={keys} handleDelete={handleDelete} />
         </ContentContainer>
     );
 }
