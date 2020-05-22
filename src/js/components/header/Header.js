@@ -16,6 +16,9 @@ const useStyles = makeStyles(theme => ({
     menuButton: {
         marginRight: theme.spacing(2)
     },
+    headerButton: {
+        color: theme.palette.common.white
+    },
     title: {
         flexGrow: 1
     }
@@ -32,13 +35,13 @@ const Header = props => {
                     Spring-bundle
                 </Typography>
 
-                <Button color="secondary" component={Link} to={urls.greetings}>
+                <Button className={styles.headerButton} component={Link} to={urls.greetings}>
                     Greetings
                 </Button>
-                <Button color="secondary" component={Link} to={urls.login}>
+                <Button className={styles.headerButton} component={Link} to={urls.login}>
                     Sign in
                 </Button>
-                <Button color="secondary" component={Link} to={urls.registration}>
+                <Button className={styles.headerButton} component={Link} to={urls.registration}>
                     Registration
                 </Button>
             </Toolbar>

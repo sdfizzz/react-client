@@ -3,18 +3,22 @@ import { styled } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 
-const StyledContainer = styled(Container)({
-    maxWidth: '800px',
-    display: 'flex',
-    flexFlow: 'column noWrap',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '20px'
+const StyledContainer = styled(Container)(props => {
+    return {
+        maxWidth: '800px',
+        display: 'flex',
+        flexFlow: props.row ? 'row noWrap' : 'column noWrap',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '20px'
+    };
 });
 
 const ContentContainer = props => (
     <Typography component={'span'} variant={'body2'}>
-        <StyledContainer {...props}>{props.children}</StyledContainer>
+        <StyledContainer {...props} row={props.row ? 1 : 0}>
+            {props.children}
+        </StyledContainer>
     </Typography>
 );
 
