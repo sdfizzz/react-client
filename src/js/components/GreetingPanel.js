@@ -6,10 +6,7 @@ function GreetingPanel(props) {
     const [greetings, setGreetings] = useState([]);
 
     useEffect(() => {
-        axios
-            .post(apiUrls.greetings.list.href)
-            .then(res => setGreetings(state => res.data))
-            .catch(console.log);
+        axios.post(apiUrls.greetings.list.href).then(res => setGreetings(state => res.data));
     }, []);
 
     return (

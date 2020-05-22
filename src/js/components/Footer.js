@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 
 const Footer = () => (
     <div className={useStyles().root}>
-        <Typography variant="body1">
+        <Typography component={'span'} variant={'body2'}>
             <p>Made for inspiration</p>
         </Typography>
     </div>

@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 
 function RegistrationForm(props) {
     const [state, setState] = useState({
+        email: '',
         name: '',
         password: '',
         confirmPassword: '',

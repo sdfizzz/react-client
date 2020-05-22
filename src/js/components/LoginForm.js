@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { apiUrls } from '../constants/apiConstants.js';
-import { urls, createLink } from '../constants/urls.js';
+import { urls } from '../constants/urls.js';
 import { withRouter } from 'react-router-dom';
 import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -66,7 +66,7 @@ function LoginForm(props) {
     };
 
     return (
-        <Typography>
+        <Typography component={'span'} variant={'body2'}>
             <StyledContainer>
                 <TextField helperText="Enter your Username" placeholder="Username" onChange={handleChange} />
                 <br />
@@ -77,9 +77,7 @@ function LoginForm(props) {
                     onChange={handleChange}
                 />
                 <br />
-                <Button primary={true} onClick={handleSubmitClick}>
-                    Submit
-                </Button>
+                <Button onClick={handleSubmitClick}>Submit</Button>
                 <br />
                 <small>We'll never share your name with anyone else.</small>
 
