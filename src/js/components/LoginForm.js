@@ -3,20 +3,9 @@ import axios from 'axios';
 import { apiUrls } from '../constants/apiConstants.js';
 import { urls } from '../constants/urls.js';
 import { withRouter } from 'react-router-dom';
-import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
 import ColumnTextField from './common/ColumnTextField';
-
-const StyledContainer = styled(Container)({
-    maxWidth: '800px',
-    display: 'flex',
-    flexFlow: 'column noWrap',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '20px'
-});
+import ContentContainer from './common/ContentContainer';
 
 function LoginForm(props) {
     const [state, setState] = useState({
@@ -64,35 +53,34 @@ function LoginForm(props) {
     };
 
     return (
-        <Typography component={'span'} variant={'body2'}>
-            <StyledContainer>
-                <ColumnTextField
-                    id="name"
-                    helperText="Enter your Username"
-                    placeholder="Username"
-                    onChange={handleChange}
-                />
-                <ColumnTextField
-                    id="password"
-                    type="password"
-                    helperText="Enter your Password"
-                    placeholder="Password"
-                    onChange={handleChange}
-                />
-                <Button onClick={handleSubmitClick}>Submit</Button>
-                <small>We'll never share your name with anyone else.</small>
+        <ContentContainer>
+            <h2>Login page</h2>
+            <ColumnTextField
+                id="name"
+                helperText="Enter your Username"
+                placeholder="Username"
+                onChange={handleChange}
+            />
+            <ColumnTextField
+                id="password"
+                type="password"
+                helperText="Enter your Password"
+                placeholder="Password"
+                onChange={handleChange}
+            />
+            <Button onClick={handleSubmitClick}>Submit</Button>
+            <small>We'll never share your name with anyone else.</small>
 
-                <div style={{ display: state.message ? 'block' : 'none' }} role="alert">
-                    {state.message}
-                </div>
-                <div>
-                    <span>Dont have an account? </span>
-                    <Button color="inherit" href={urls.registration.href}>
-                        Registration
-                    </Button>
-                </div>
-            </StyledContainer>
-        </Typography>
+            <div style={{ display: state.message ? 'block' : 'none' }} role="alert">
+                {state.message}
+            </div>
+            <div>
+                <span>Dont have an account? </span>
+                <Button color="inherit" href={urls.registration.href}>
+                    Registration
+                </Button>
+            </div>
+        </ContentContainer>
     );
 }
 

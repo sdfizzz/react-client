@@ -1,23 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
 
 import { apiUrls } from '../constants/apiConstants.js';
 import { urls } from '../constants/urls.js';
 import ColumnTextField from './common/ColumnTextField';
 import BottomContainer from './common/BottomContainer';
-
-const StyledContainer = styled(Container)({
-    maxWidth: '800px',
-    display: 'flex',
-    flexFlow: 'column noWrap',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '20px'
-});
+import ContentContainer from './common/ContentContainer';
 
 function RegistrationForm(props) {
     const [state, setState] = useState({
@@ -81,48 +71,42 @@ function RegistrationForm(props) {
     };
 
     return (
-        <Typography component={'span'} variant={'body2'}>
-            <StyledContainer>
-                <ColumnTextField
-                    id="email"
-                    helperText="Enter your e-mail"
-                    placeholder="E-mail"
-                    onChange={handleChange}
-                />
-                <ColumnTextField
-                    id="name"
-                    helperText="Enter your username"
-                    placeholder="Username"
-                    onChange={handleChange}
-                />
-                <ColumnTextField
-                    id="password"
-                    type="password"
-                    helperText="Enter your password"
-                    placeholder="Password"
-                    onChange={handleChange}
-                />
-                <ColumnTextField
-                    id="confirmPassword"
-                    type="password"
-                    helperText="Confirm your password"
-                    placeholder="Password confirmation"
-                    onChange={handleChange}
-                />
-                <small>We'll never share your name with anyone else.</small>
-                <Button onClick={handleSubmitClick}>Submit</Button>
+        <ContentContainer>
+            <h2>Registration</h2>
+            <ColumnTextField id="email" helperText="Enter your e-mail" placeholder="E-mail" onChange={handleChange} />
+            <ColumnTextField
+                id="name"
+                helperText="Enter your username"
+                placeholder="Username"
+                onChange={handleChange}
+            />
+            <ColumnTextField
+                id="password"
+                type="password"
+                helperText="Enter your password"
+                placeholder="Password"
+                onChange={handleChange}
+            />
+            <ColumnTextField
+                id="confirmPassword"
+                type="password"
+                helperText="Confirm your password"
+                placeholder="Password confirmation"
+                onChange={handleChange}
+            />
+            <small>We'll never share your name with anyone else.</small>
+            <Button onClick={handleSubmitClick}>Submit</Button>
 
-                <BottomContainer>
-                    <div style={{ display: state.message ? 'block' : 'none' }}>{state.message}</div>
-                    <div>
-                        <span>Already have an account?</span>
-                        <Button color="inherit" href={urls.registration.href}>
-                            Sing in
-                        </Button>
-                    </div>
-                </BottomContainer>
-            </StyledContainer>
-        </Typography>
+            <BottomContainer>
+                <div style={{ display: state.message ? 'block' : 'none' }}>{state.message}</div>
+                <div>
+                    <span>Already have an account?</span>
+                    <Button color="inherit" href={urls.registration.href}>
+                        Sing in
+                    </Button>
+                </div>
+            </BottomContainer>
+        </ContentContainer>
     );
 }
 

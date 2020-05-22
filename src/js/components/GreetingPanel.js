@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { apiUrls } from '../constants/apiConstants.js';
+import CustomizedTable from './common/CustomizedTable';
+import ContentContainer from './common/ContentContainer';
+
+const headers = ['id', 'template', 'user'];
+const keys = ['id', 'message', 'fromUser'];
 
 function GreetingPanel(props) {
     const [greetings, setGreetings] = useState([]);
@@ -10,12 +15,10 @@ function GreetingPanel(props) {
     }, []);
 
     return (
-        <div>
-            Content:
-            {greetings.map(s => (
-                <div>{s.message}</div>
-            ))}
-        </div>
+        <ContentContainer>
+            <h2>Greetings</h2>
+            <CustomizedTable headers={headers} data={greetings} keys={keys} />
+        </ContentContainer>
     );
 }
 
